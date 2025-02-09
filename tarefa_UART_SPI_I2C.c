@@ -75,13 +75,13 @@ void gpio_irq_callback(uint gpio, uint32_t events) {
     if (gpio == BUTTON_A) {
       led_green_state = !led_green_state;
       gpio_put(GREEN_RGB, led_green_state);
-      snprintf(string_a, sizeof(string_a), "LED VERDE %s", led_green_state ? "On" : "Off");
-      printf("Botão A LED verde %s\n", led_green_state ? "On" : "Off");
+      snprintf(string_a, sizeof(string_a), "LED VERDE %s", led_green_state ? "ligado" : "desligado");
+      printf("Botão A LED verde %s\n", led_green_state ? "ligado" : "desligado");
     } else if (gpio == BUTTON_B) {
       led_blue_state = !led_blue_state;
       gpio_put(BLUE_RGB, led_blue_state);
-      snprintf(string_b, sizeof(string_b), "LED AZUL %s", led_blue_state ? "On" : "Off");
-      printf("Botão B LED azul %s \n", led_blue_state ? "On" : "Off");
+      snprintf(string_b, sizeof(string_b), "LED AZUL %s", led_blue_state ? "ligado" : "desligado");
+      printf("Botão B LED azul %s \n", led_blue_state ? "ligado" : "desligado");
     }
 
     ssd1306_fill(ssd_pointer, false);
@@ -113,7 +113,7 @@ int main() {
   // Desenha a interface inicial
   ssd1306_rect(&ssd, 0, 0, 128, 64, true, false);
   ssd1306_rect(&ssd, 2, 2, 124, 60, true, false);
-  ssd1306_draw_string(&ssd, "Simbolo:" , 8, 16);
+  ssd1306_draw_string(&ssd, "Num:" , 8, 16);
   ssd1306_draw_string(&ssd, c, 80, 16); // Desenha o Simbolo digitado
   ssd1306_draw_string(&ssd, string_a, 8, 40);
   ssd1306_draw_string(&ssd, string_b, 8, 48);
@@ -129,7 +129,7 @@ int main() {
       // Função 'handle_numbers' vai acionar a função de desenho na matriz
       handle_numbers(c[0]); 
 
-      ssd1306_draw_string(&ssd, "Simbolo:" , 8, 16);
+      ssd1306_draw_string(&ssd, "Num:" , 8, 16);
       ssd1306_draw_string(&ssd, c, 80, 16); // Simbolo digitado
       ssd1306_send_data(&ssd); // Atualiza o display
     }
